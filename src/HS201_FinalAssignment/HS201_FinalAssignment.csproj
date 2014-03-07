@@ -203,6 +203,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Data Access\NhConfiguration.cs" />
     <Compile Include="Entities\Conference.cs" />
+    <Compile Include="Entities\ConferenceMapping.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

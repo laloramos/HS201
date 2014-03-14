@@ -8,7 +8,7 @@ namespace HS201_FinalAssignment.Domain.Mappings
     {
         public ConferenceMapping()
         {
-            Id(x=>x.Id);
+            Id(x => x.Id, map => map.Generator(Generators.Identity)); 
             Property(x => x.Name);
             Property(x => x.HashTag);
             Property(x => x.StartDate);

@@ -24,5 +24,11 @@ namespace HS201.FinalAssignment.Test
 
             File.WriteAllLines(fullPath, scripts);
         }
+
+        [TestMethod]
+        public void AssertConferenceCanPersist()
+        {
+            
+        }
     }
 }

@@ -216,8 +216,14 @@
     <Compile Include="DependencyResolution\IoC.cs" />
     <Compile Include="DependencyResolution\StructureMapDependencyResolver.cs" />
     <Compile Include="DependencyResolution\StructureMapDependencyScope.cs" />
+    <Compile Include="Domain\Entities\Attendee.cs" />
+    <Compile Include="Domain\Entities\Speaker.cs" />
     <Compile Include="Domain\Entities\Conference.cs" />
+    <Compile Include="Domain\Entities\Session.cs" />
+    <Compile Include="Domain\Mappings\AttendeeMapping.cs" />
+    <Compile Include="Domain\Mappings\SpeakerMapping.cs" />
     <Compile Include="Domain\Mappings\ConferenceMapping.cs" />
+    <Compile Include="Domain\Mappings\SessionMapping.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

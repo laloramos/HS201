@@ -17,6 +17,7 @@
 
 using System.Web.Http;
 using System.Web.Mvc;
+using Microsoft.Practices.ServiceLocation;
 using StructureMap;
 using HS201_FinalAssignment.DependencyResolution;
 
@@ -26,6 +27,7 @@ namespace HS201_FinalAssignment.App_Start {
     public static class StructuremapMvc {
         public static void Start() {
 			IContainer container = IoC.Initialize();
+            ServiceLocator.SetLocatorProvider(() => new StructureMapDependencyScope(container));
             DependencyResolver.SetResolver(new StructureMapDependencyResolver(container));
             GlobalConfiguration.Configuration.DependencyResolver = new StructureMapDependencyResolver(container);
         }

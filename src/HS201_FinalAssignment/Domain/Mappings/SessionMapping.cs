@@ -8,10 +8,10 @@ namespace HS201_FinalAssignment.Domain.Mappings
     {
         public SessionMapping()
         {
-            Id(x => x.Id, map => map.Generator(Generators.Identity)); 
+            Id(x => x.Id, map => map.Generator(Generators.Identity));
             Property(x => x.Title);
             Property(x => x.Abstract);
-            Property(x => x.Speaker);
+            ManyToOne(x => x.Speaker, x => x.Column("SpeakerId"));
         }
     }
 }

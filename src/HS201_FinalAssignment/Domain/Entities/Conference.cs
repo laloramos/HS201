@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Web.Mvc;
 using Iesi.Collections.Generic;
-using NHibernate.Mapping;
 
 namespace HS201_FinalAssignment.Domain.Entities
 {
@@ -13,8 +10,8 @@ namespace HS201_FinalAssignment.Domain.Entities
         public virtual int Id { get; set; }
         public virtual string Name { get;  set; }
         public virtual string HashTag { get;  set; }
-        public virtual DateTime StartDate { get;  set; }
-        public virtual DateTime EndDate { get;  set; }
+        public virtual DateTime? StartDate { get;  set; }
+        public virtual DateTime? EndDate { get;  set; }
         public virtual decimal Cost { get;  set; }
 
         public virtual Iesi.Collections.Generic.ISet<Session> Sessions

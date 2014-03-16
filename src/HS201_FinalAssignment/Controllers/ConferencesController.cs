@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using HS201_FinalAssignment.Domain.Entities;
 using NHibernate;
+using StructureMap.Query;
 
 namespace HS201_FinalAssignment.Controllers
 {
@@ -32,6 +33,11 @@ namespace HS201_FinalAssignment.Controllers
             _session.SaveOrUpdate(newConf);
             
             return View();
+        }
+
+        public Model ConferenceList() 
+        {
+            return null;
         }
 
     }

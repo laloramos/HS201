@@ -16,16 +16,18 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 
+using NHibernate;
 using StructureMap;
 namespace HS201_FinalAssignment.DependencyResolution {
     public static class IoC {
         public static IContainer Initialize() {
-            ObjectFactory.Initialize(x =>
+            ObjectFactory.Configure(x =>
                         {
                             x.Scan(scan =>
                                     {
                                         scan.TheCallingAssembly();
                                         scan.WithDefaultConventions();
+                                        scan.Assembly("HS201_FinalAssignment");
 
                                         scan.LookForRegistries();
                                     });

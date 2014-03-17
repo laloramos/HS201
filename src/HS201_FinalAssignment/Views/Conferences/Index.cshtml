@@ -1,6 +1,38 @@
-﻿@{
+﻿@using HS201_FinalAssignment.Controllers
+@using HS201_FinalAssignment.Domain.Entities
+@model HS201_FinalAssignment.Controllers.ConferenceIndexModel
+
+@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Conferences</h2>
+<table>
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Hash Tag</th>
+			<th>Start Date</th>
+			<th>End Date</th>
+			<th>Cost</th>
+		    <th>Attendees</th>
+            <th></th>
+		</tr>
+	</thead>
+<tbody>
+
+    @for (var i = 0; i < Model.Conferences.Count; ++i)
+    {
+        <tr>
+            <td>@Html.DisplayFor(x => x.Conferences[i].Name) </td>
+            <td>@Html.DisplayFor(x => x.Conferences[i].HashTag) </td>
+            <td>@Html.DisplayFor(x => x.Conferences[i].StartDate) </td>
+            <td>@Html.DisplayFor(x => x.Conferences[i].EndDate) </td>
+            <td>@Html.DisplayFor(x => x.Conferences[i].Cost) </td>
+            <td>@Html.DisplayFor(x => x.Conferences[i].AttendeeCount) </td>
+            <td>@Html.ActionLink("Edit", "Edit", new{id= @Model.Conferences[i].Id})</td>
+        </tr>
+    }
+</tbody>
+    </table>

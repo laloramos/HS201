@@ -1,0 +1,7 @@
+﻿@model DateTime?
+		   
+@{
+	var val = Model.HasValue ? Model.Value.ToShortDateString() : String.Empty;
+}
+
+@val

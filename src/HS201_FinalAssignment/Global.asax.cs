@@ -6,6 +6,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using HS201_FinalAssignment.Helpers;
 using Microsoft.Practices.ServiceLocation;
 using NHibernate;
 
@@ -19,6 +20,9 @@ namespace HS201_FinalAssignment
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
+
+
+            AutoMapperBootstrapper.Initialize();
 
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

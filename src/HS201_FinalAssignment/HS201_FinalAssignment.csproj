@@ -228,6 +228,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\AutoMapperStuff.cs" />
+    <Compile Include="Infrastructure\IAttendeeRepository.cs" />
+    <Compile Include="Infrastructure\ISpeakerRepository.cs" />
+    <Compile Include="Infrastructure\ISessionRepository.cs" />
+    <Compile Include="Infrastructure\IConferenceRepository.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -360,6 +365,8 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\Conferences\Index.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\DateTime.cshtml" />
+    <Content Include="Views\Conferences\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

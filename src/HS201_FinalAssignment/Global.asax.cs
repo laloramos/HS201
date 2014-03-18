@@ -17,6 +17,22 @@ namespace HS201_FinalAssignment
 
     public class MvcApplication : System.Web.HttpApplication
     {
+        public MvcApplication()
+        {
+            EndRequest += (sender, args) =>
+            {
+                using (var session = DependencyResolver.Current.GetService<ISession>())
+                {
+                    if (session == null)
+                        return;
+
+                    if (Server.GetLastError() != null)
+                        return;
+                }
+            };
+
+        }
+
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();

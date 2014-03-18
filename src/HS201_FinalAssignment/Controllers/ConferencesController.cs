@@ -1,17 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Text.RegularExpressions;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.UI;
 using AutoMapper;
-using HS201_FinalAssignment.Domain.Entities;
 using HS201_FinalAssignment.Infrastructure;
-using NHibernate;
-using StructureMap.Query;
 
 namespace HS201_FinalAssignment.Controllers
 {
@@ -50,7 +43,7 @@ namespace HS201_FinalAssignment.Controllers
         {
             var conf = _repository.Load(id);
 
-            var model = Mapper.Map<ConferenceEditModel>(conf);
+            ConferenceEditModel model = Mapper.Map<ConferenceEditModel>(conf);
 
             return View(model);
         }
@@ -58,17 +51,17 @@ namespace HS201_FinalAssignment.Controllers
         [HttpPost]
         public ActionResult Edit(ConferenceEditModel model)
         {
-            if (ModelState.IsValid)
+            /*if (ModelState.IsValid)
             {
                 var conference = _repository.Load(model.Id);
 
                 conference.ChangeName(model.Name);
-                conference.ChangeCost(model.Cost.Value);
+                conference.ChangeCost(model.Cost);
                 conference.ChangeDates(model.StartDate.Value, model.EndDate.Value);
                 conference.ChangeHashTag(model.HashTag);
 
                 return RedirectToAction("Index");
-            }
+            }*/
 
             return View(model);
         }
@@ -107,6 +100,6 @@ namespace HS201_FinalAssignment.Controllers
         [DisplayName("End Date")]
         public DateTime? EndDate { get; set; }
 
-        public decimal? Cost { get; set; }
+        public decimal Cost { get; set; }
     }
 }

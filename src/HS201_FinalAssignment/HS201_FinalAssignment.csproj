@@ -214,6 +214,7 @@
     <Compile Include="Data Access\NhConfiguration.cs" />
     <Compile Include="DependencyResolution\NHibernateRegistry.cs" />
     <Compile Include="DependencyResolution\IoC.cs" />
+    <Compile Include="DependencyResolution\ServiceLocatorImplBase.cs" />
     <Compile Include="DependencyResolution\StructureMapDependencyResolver.cs" />
     <Compile Include="DependencyResolution\StructureMapDependencyScope.cs" />
     <Compile Include="Domain\Entities\Attendee.cs" />

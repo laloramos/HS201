@@ -13,6 +13,7 @@ namespace HS201_FinalAssignment.Infrastructure
         Conference Load(int id);
         Conference FindByName(string name);
         void Insert(Conference conference);
+        void Save(Conference conference);
     }
 
     public class ConferenceRepository : IConferenceRepository
@@ -46,6 +47,11 @@ namespace HS201_FinalAssignment.Infrastructure
         }
 
         public void Insert(Conference conference)
+        {
+            _session.Save(conference);
+        }
+
+        public void Save(Conference conference)
         {
             _session.Save(conference);
         }

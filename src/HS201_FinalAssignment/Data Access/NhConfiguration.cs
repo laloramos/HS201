@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Web;
+using HS201_FinalAssignment.Controllers;
 using HS201_FinalAssignment.Domain.Entities;
 using NHibernate.Cfg;
 using NHibernate.Cfg.MappingSchema;

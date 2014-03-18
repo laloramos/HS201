@@ -1,19 +1,20 @@
-﻿@model HS201_FinalAssignment.Controllers.ConferenceEditModel
+﻿@model HS201_FinalAssignment.Controllers.ConferenceAddModel
 
 @{
-    ViewBag.Title = "Conference Edit";
+    ViewBag.Title = "title";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<h2>Add Conference</h2>
+
+
 @using(Html.BeginForm()){
-	@Html.HiddenFor(x => x.Id)
 	@Html.ValidationSummary("Please fix the following errors:")
 	
 	<div>
 		@Html.LabelFor(x => x.Name)
 		@Html.EditorFor(x => x.Name)
-	</div>	
-    <div>
+	</div>	<div>
 		@Html.LabelFor(x => x.HashTag)
 		@Html.EditorFor(x => x.HashTag)
 	</div>

@@ -4,6 +4,9 @@ using System.ComponentModel;
 using System.Linq;
 using System.Web.Mvc;
 using AutoMapper;
+using FluentValidation;
+using FluentValidation.Attributes;
+using HS201_FinalAssignment.Domain.Entities;
 using HS201_FinalAssignment.Infrastructure;
 
 namespace HS201_FinalAssignment.Controllers
@@ -43,7 +46,7 @@ namespace HS201_FinalAssignment.Controllers
         {
             var conf = _repository.Load(id);
 
-            ConferenceEditModel model = Mapper.Map<ConferenceEditModel>(conf);
+            var model = Mapper.Map<ConferenceEditModel>(conf);
 
             return View(model);
         }
@@ -51,7 +54,7 @@ namespace HS201_FinalAssignment.Controllers
         [HttpPost]
         public ActionResult Edit(ConferenceEditModel model)
         {
-            /*if (ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 var conference = _repository.Load(model.Id);
 
@@ -60,8 +63,28 @@ namespace HS201_FinalAssignment.Controllers
                 conference.ChangeDates(model.StartDate.Value, model.EndDate.Value);
                 conference.ChangeHashTag(model.HashTag);
 
+                _repository.Save(conference);
+
                 return RedirectToAction("Index");
-            }*/
+            }
+
+            return View(model);
+        }
+
+        public ActionResult Add()
+        {
+            return View(new ConferenceAddModel());
+        }
+
+        [HttpPost]
+        public ActionResult Add(ConferenceAddModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                _repository.Insert(Mapper.Map<Conference>(model));
+
+                return RedirectToAction("Index");
+            }
 
             return View(model);
         }
@@ -84,6 +107,7 @@ namespace HS201_FinalAssignment.Controllers
         public int SessionCount { get; set; }
     }
 
+    [Validator(typeof(ConferenceEditModelValidator))]
     public class ConferenceEditModel
     {
         public int Id { get; set; }
@@ -101,5 +125,99 @@ namespace HS201_FinalAssignment.Controllers
         public DateTime? EndDate { get; set; }
 
         public decimal Cost { get; set; }
+    }
+
+    [Validator(typeof (ConferenceAddModelValidator))]
+    public class ConferenceAddModel
+    {
+        [DisplayName("Name")]
+        public string Name { get; set; }
+
+        [DisplayName("Hash Tag")]
+        public string HashTag { get; set; }
+
+        [DisplayName("Start Date")]
+        public DateTime? StartDate { get; set; }
+
+        [DisplayName("End Date")]
+        public DateTime? EndDate { get; set; }
+
+        public decimal Cost { get; set; }
+    }
+
+    public class ConferenceEditModelValidator : AbstractValidator<ConferenceEditModel>
+    {
+        private IConferenceRepository _conferenceRepository;
+
+        public ConferenceEditModelValidator()
+        {
+            _conferenceRepository = DependencyResolver.Current.GetService<IConferenceRepository>();
+
+            RuleFor(x => x.Name)
+                .NotEmpty()
+                .Must(BeAUniqueName)
+                .WithMessage("{PropertyName} is already in use.");
+
+            RuleFor(x => x.HashTag)
+                .NotEmpty();
+
+            RuleFor(x => x.StartDate)
+                .NotEmpty();
+
+            RuleFor(x => x.EndDate)
+                .NotEmpty()
+                .GreaterThanOrEqualTo(x => x.StartDate)
+                .WithMessage("{PropertyName} must be after or equal to {ComparisonValue}.", x => x.StartDate);
+
+            RuleFor(x => x.Cost)
+                .NotEmpty();
+
+            RuleFor(x => x.Cost)
+                .GreaterThanOrEqualTo(0).WithMessage("{PropertyName} must be at least $0.00");
+        }
+
+        public bool BeAUniqueName(ConferenceEditModel model, string name)
+        {
+            var c = _conferenceRepository.FindByName(name);
+            return c == null || model.Id == c.Id;
+        }
+    }
+
+
+    public class ConferenceAddModelValidator : AbstractValidator<ConferenceAddModel>
+    {
+        private IConferenceRepository _conferenceRepository;
+
+        public ConferenceAddModelValidator()
+        {
+            _conferenceRepository = DependencyResolver.Current.GetService<IConferenceRepository>();
+
+            RuleFor(x => x.Name)
+                .NotEmpty()
+                .Must(BeAUniqueName)
+                .WithMessage("{PropertyName} is already in use.");
+
+            RuleFor(x => x.HashTag)
+                .NotEmpty();
+
+            RuleFor(x => x.StartDate)
+                .NotEmpty();
+
+            RuleFor(x => x.EndDate)
+                .NotEmpty()
+                .GreaterThanOrEqualTo(x => x.StartDate)
+                    .WithMessage("{PropertyName} must be after or equal to {ComparisonValue}.", x => x.StartDate);
+
+            RuleFor(x => x.Cost)
+                .NotEmpty();
+
+            RuleFor(x => x.Cost)
+                .GreaterThanOrEqualTo(0).WithMessage("{PropertyName} must be at least $0.00");
+        }
+
+        public bool BeAUniqueName(ConferenceAddModel model, string name)
+        {
+            return _conferenceRepository.FindByName(name) == null;
+        }
     }
 }

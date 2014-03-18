@@ -19,6 +19,7 @@ namespace HS201_FinalAssignment.Helpers
         {
             Mapper.CreateMap<Conference, ConferenceListItem>();
             Mapper.CreateMap<Conference, ConferenceEditModel>();
+            Mapper.CreateMap<Conference, ConferenceAddModel>();
         }
     }
 }

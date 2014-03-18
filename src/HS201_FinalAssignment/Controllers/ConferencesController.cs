@@ -88,11 +88,58 @@ namespace HS201_FinalAssignment.Controllers
 
             return View(model);
         }
+
+        public ActionResult BulkEdit(string searchString)
+        {
+            var confs = _repository
+                            .GetAll()
+                            .ToList();
+
+            if (!String.IsNullOrEmpty(searchString))
+                confs =
+                    confs.Where(
+                        x => x.Attendees.Count.ToString() == searchString
+                             || x.StartDate.GetValueOrDefault().ToShortDateString() == searchString
+                             || x.Name == searchString).ToList();
+            var model = new ConferenceBulkEditModel()
+            {
+                Conferences = Mapper.Map<List<ConferenceListItem>>(confs)
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult BulkEdit(ConferenceBulkEditModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                foreach (var conf in model.Conferences)
+                {
+                    var conference = _repository.Load(conf.Id);
+
+                    conference.ChangeName(conf.Name);
+                    conference.ChangeCost(conf.Cost);
+                    conference.ChangeDates(conf.StartDate.Value, conf.EndDate.Value);
+                    conference.ChangeHashTag(conf.HashTag);
+                    _repository.Save(conference);
+                }
+
+                return RedirectToAction("Index");
+            }
+
+            return View(model);
+        }
     }
 
     public class ConferenceIndexModel
     {
         public List<ConferenceListItem> Conferences { get; set; }
+    }
+
+    public class ConferenceBulkEditModel
+    {
+        public List<ConferenceListItem> Conferences { get; set; } 
     }
 
     public class ConferenceListItem

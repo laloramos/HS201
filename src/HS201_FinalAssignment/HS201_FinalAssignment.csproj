@@ -375,6 +375,7 @@
     <Content Include="Views\Shared\DisplayTemplates\DateTime.cshtml" />
     <Content Include="Views\Conferences\Edit.cshtml" />
     <Content Include="Views\Conferences\Add.cshtml" />
+    <Content Include="Views\Conferences\BulkEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

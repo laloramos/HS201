@@ -48,12 +48,15 @@ namespace HS201_FinalAssignment.Infrastructure
 
         public void Insert(Conference conference)
         {
-            _session.Save(conference);
+            _session.SaveOrUpdate(conference);
+            _session.Transaction.Commit();
         }
 
         public void Save(Conference conference)
         {
-            _session.Save(conference);
+            _session.Transaction.Begin();
+            _session.SaveOrUpdate(conference);
+            _session.Transaction.Commit();
         }
     }
 }

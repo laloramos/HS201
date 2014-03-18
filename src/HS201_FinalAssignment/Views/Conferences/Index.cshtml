@@ -8,6 +8,17 @@
 }
 
 <h2>Conferences</h2>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Find by attendee count or start date: @Html.TextBox("searchString")  
+        <input type="submit" value="Search" /></p>
+}
+
+@Html.ActionLink("Edit All", "BulkEdit")
+@Html.ActionLink("Add", "Add")
+
 <table>
 	<thead>
 		<tr>

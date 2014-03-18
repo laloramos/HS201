@@ -1,0 +1,44 @@
+﻿@model HS201_FinalAssignment.Controllers.ConferenceBulkEditModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Bulk Edit - Conferences</h2>
+
+@using (Html.BeginForm())
+{	
+	@Html.ValidationSummary("Please fix the errors below:")
+	<table>
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Hash Tag</th>
+				<th>Start Date</th>
+				<th>End Date</th>
+				<th>Cost</th>
+				<th>Attendees</th>
+			</tr>
+		</thead>
+		<tbody>
+			@for (int i = 0; i < Model.Conferences.Count; i++)
+			{
+				<tr>
+					<td>
+						@Html.HiddenFor(x => x.Conferences[i].Id)
+						@Html.EditorFor(x => x.Conferences[i].Name)
+					</td>
+					<td>@Html.EditorFor(x => x.Conferences[i].HashTag)</td>
+					<td>@Html.EditorFor(x => x.Conferences[i].StartDate)</td>
+					<td>@Html.EditorFor(x => x.Conferences[i].EndDate)</td>
+					<td>@Html.EditorFor(x => x.Conferences[i].Cost)</td>
+					<td>@Html.EditorFor(x => x.Conferences[i].AttendeeCount)</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+	
+	<input type="submit" />
+}
+

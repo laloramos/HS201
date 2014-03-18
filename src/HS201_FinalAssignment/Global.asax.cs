@@ -37,7 +37,6 @@ namespace HS201_FinalAssignment
         {
             AreaRegistration.RegisterAllAreas();
 
-
             AutoMapperBootstrapper.Initialize();
 
             WebApiConfig.Register(GlobalConfiguration.Configuration);

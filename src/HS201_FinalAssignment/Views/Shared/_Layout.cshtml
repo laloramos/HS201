@@ -28,17 +28,14 @@
             </div>
             <div class="collapse navbar-collapse">
               <ul class="nav navbar-nav">
-                <li class="active">@Html.ActionLink("Home", "Index", "Home")</li>
-                <li>@Html.ActionLink("Conferences", "Index", "Conferences")</li>
+                <li id="indexLink">@Html.ActionLink("Home", "Index", "Home")</li>
+                <li id="confLink">@Html.ActionLink("Conferences", "Index", "Conferences")</li>
               </ul>
             </div><!--/.nav-collapse -->
           </div>
         </div>
-        <div id="body">
-            @RenderSection("featured", required: false)
-            <section class="container content-wrapper main-content clear-fix">
+        <div class="container">
                 @RenderBody()
-            </section>
         </div>
 
         @Scripts.Render("~/bundles/jquery")

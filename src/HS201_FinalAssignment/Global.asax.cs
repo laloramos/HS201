@@ -6,6 +6,8 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using FluentValidation;
+using FluentValidation.Mvc;
 using HS201_FinalAssignment.Helpers;
 using Microsoft.Practices.ServiceLocation;
 using NHibernate;
@@ -37,6 +39,10 @@ namespace HS201_FinalAssignment
         {
             AreaRegistration.RegisterAllAreas();
 
+            DataAnnotationsModelValidatorProvider.AddImplicitRequiredAttributeForValueTypes = false;
+            FluentValidationModelValidatorProvider.Configure();
+            ValidatorOptions.ResourceProviderType = typeof(FluentValidationConfigResource);
+            
             AutoMapperBootstrapper.Initialize();
 
             WebApiConfig.Register(GlobalConfiguration.Configuration);
@@ -71,6 +77,14 @@ namespace HS201_FinalAssignment
             finally
             {
                 currentSession.Dispose();
+            }
+        }
+
+        public class FluentValidationConfigResource
+        {
+            public static string notempty_error
+            {
+                get { return "{PropertyName} is Required"; }
             }
         }
     }

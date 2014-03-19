@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
 using FluentValidation;
 using FluentValidation.Attributes;
 using HS201_FinalAssignment.Domain.Entities;
 using HS201_FinalAssignment.Infrastructure;
+using Microsoft.Practices.ServiceLocation;
+using NHibernate;
 
 namespace HS201_FinalAssignment.Controllers
 {
@@ -59,7 +62,7 @@ namespace HS201_FinalAssignment.Controllers
                 var conference = _repository.Load(model.Id);
 
                 conference.ChangeName(model.Name);
-                conference.ChangeCost(model.Cost);
+                conference.ChangeCost(model.Cost.Value);
                 conference.ChangeDates(model.StartDate.Value, model.EndDate.Value);
                 conference.ChangeHashTag(model.HashTag);
 
@@ -171,7 +174,7 @@ namespace HS201_FinalAssignment.Controllers
         [DisplayName("End Date")]
         public DateTime? EndDate { get; set; }
 
-        public decimal Cost { get; set; }
+        public decimal? Cost { get; set; }
     }
 
     [Validator(typeof (ConferenceAddModelValidator))]
@@ -189,17 +192,13 @@ namespace HS201_FinalAssignment.Controllers
         [DisplayName("End Date")]
         public DateTime? EndDate { get; set; }
 
-        public decimal Cost { get; set; }
+        public decimal? Cost { get; set; }
     }
 
     public class ConferenceEditModelValidator : AbstractValidator<ConferenceEditModel>
     {
-        private IConferenceRepository _conferenceRepository;
-
         public ConferenceEditModelValidator()
         {
-            _conferenceRepository = DependencyResolver.Current.GetService<IConferenceRepository>();
-
             RuleFor(x => x.Name)
                 .NotEmpty()
                 .Must(BeAUniqueName)
@@ -225,20 +224,16 @@ namespace HS201_FinalAssignment.Controllers
 
         public bool BeAUniqueName(ConferenceEditModel model, string name)
         {
-            var c = _conferenceRepository.FindByName(name);
-            return c == null || model.Id == c.Id;
+            var conf = ServiceLocator.Current.GetInstance<ISession>().QueryOver<Conference>().Where(x => x.Name == name).SingleOrDefault();
+            return conf == null || conf.Id == model.Id;
         }
     }
 
 
     public class ConferenceAddModelValidator : AbstractValidator<ConferenceAddModel>
     {
-        private IConferenceRepository _conferenceRepository;
-
         public ConferenceAddModelValidator()
         {
-            _conferenceRepository = DependencyResolver.Current.GetService<IConferenceRepository>();
-
             RuleFor(x => x.Name)
                 .NotEmpty()
                 .Must(BeAUniqueName)
@@ -264,7 +259,7 @@ namespace HS201_FinalAssignment.Controllers
 
         public bool BeAUniqueName(ConferenceAddModel model, string name)
         {
-            return _conferenceRepository.FindByName(name) == null;
+            return ServiceLocator.Current.GetInstance<ISession>().QueryOver<Conference>().Where(x => x.Name == name) == null;
         }
     }
 }

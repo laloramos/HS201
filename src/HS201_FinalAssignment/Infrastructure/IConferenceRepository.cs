@@ -19,7 +19,7 @@ namespace HS201_FinalAssignment.Infrastructure
     public class ConferenceRepository : IConferenceRepository
     {
         private readonly ISession _session;
-
+        
         public ConferenceRepository(ISession session)
         {
             _session = session;
@@ -49,14 +49,11 @@ namespace HS201_FinalAssignment.Infrastructure
         public void Insert(Conference conference)
         {
             _session.SaveOrUpdate(conference);
-            _session.Transaction.Commit();
         }
 
         public void Save(Conference conference)
         {
-            _session.Transaction.Begin();
             _session.SaveOrUpdate(conference);
-            _session.Transaction.Commit();
         }
     }
 }

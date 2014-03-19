@@ -16,6 +16,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 
+using HS201_FinalAssignment.Infrastructure;
 using NHibernate;
 using StructureMap;
 namespace HS201_FinalAssignment.DependencyResolution {
@@ -28,10 +29,11 @@ namespace HS201_FinalAssignment.DependencyResolution {
                                         scan.TheCallingAssembly();
                                         scan.WithDefaultConventions();
                                         scan.Assembly("HS201_FinalAssignment");
-
+                                        
                                         scan.LookForRegistries();
                                     });
             //                x.For<IExample>().Use<Example>();
+
                         });
             return ObjectFactory.Container;
         }

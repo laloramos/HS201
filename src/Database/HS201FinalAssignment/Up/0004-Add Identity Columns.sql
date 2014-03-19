@@ -1,8 +1,3 @@
---drop table [Session_tmp]
---drop table speaker_tmp
---drop table attendee_tmp
---drop table Conference_tmp
-
 
 CREATE TABLE [dbo].[Conference_tmp](
 	[Id] [int] NOT NULL IDENTITY(1,1) PRIMARY KEY,
@@ -52,7 +47,7 @@ select * from speaker
 set identity_insert [Speaker_tmp] off
 
 set identity_insert [Session_tmp] on
-insert into [Session_tmp] (id, Title, Abstract, ConferenceId, SpeakerId)
+insert into [Session_tmp] (id, Title, Abstract, ConferenceId)
 select * from [session]
 set identity_insert [Session_tmp] off
 

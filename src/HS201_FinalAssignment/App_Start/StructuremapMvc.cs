@@ -17,13 +17,14 @@
 
 using System.Web.Http;
 using System.Web.Mvc;
+using HS201.FinalAssignment.App_Start;
+using HS201.FinalAssignment.DependencyResolution;
 using Microsoft.Practices.ServiceLocation;
 using StructureMap;
-using HS201_FinalAssignment.DependencyResolution;
 
-[assembly: WebActivator.PreApplicationStartMethod(typeof(HS201_FinalAssignment.App_Start.StructuremapMvc), "Start")]
+[assembly: WebActivator.PreApplicationStartMethod(typeof(StructuremapMvc), "Start")]
 
-namespace HS201_FinalAssignment.App_Start {
+namespace HS201.FinalAssignment.App_Start {
     public static class StructuremapMvc {
         public static void Start() {
 			IContainer container = IoC.Initialize();

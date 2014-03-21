@@ -11,8 +11,8 @@
     <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HS201_FinalAssignment</RootNamespace>
-    <AssemblyName>HS201_FinalAssignment</AssemblyName>
+    <RootNamespace>HS201.FinalAssignment</RootNamespace>
+    <AssemblyName>HS201.FinalAssignment</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -221,22 +221,10 @@
     <Compile Include="DependencyResolution\ServiceLocatorImplBase.cs" />
     <Compile Include="DependencyResolution\StructureMapDependencyResolver.cs" />
     <Compile Include="DependencyResolution\StructureMapDependencyScope.cs" />
-    <Compile Include="Domain\Entities\Attendee.cs" />
-    <Compile Include="Domain\Entities\Speaker.cs" />
-    <Compile Include="Domain\Entities\Conference.cs" />
-    <Compile Include="Domain\Entities\Session.cs" />
-    <Compile Include="Domain\Mappings\AttendeeMapping.cs" />
-    <Compile Include="Domain\Mappings\SpeakerMapping.cs" />
-    <Compile Include="Domain\Mappings\ConferenceMapping.cs" />
-    <Compile Include="Domain\Mappings\SessionMapping.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\AutoMapperStuff.cs" />
-    <Compile Include="Infrastructure\IAttendeeRepository.cs" />
-    <Compile Include="Infrastructure\ISpeakerRepository.cs" />
-    <Compile Include="Infrastructure\ISessionRepository.cs" />
-    <Compile Include="Infrastructure\IConferenceRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -369,6 +357,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HS201.FinalAssignment.Core\HS201.FinalAssignment.Core.csproj">
+      <Project>{a36e7f7f-0b53-4101-a23a-20c6fb1a7a1e}</Project>
+      <Name>HS201.FinalAssignment.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

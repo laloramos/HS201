@@ -19,10 +19,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http.Dependencies;
-using Microsoft.Practices.ServiceLocation;
 using StructureMap;
 
-namespace HS201_FinalAssignment.DependencyResolution
+namespace HS201.FinalAssignment.DependencyResolution
 {
     /// <summary>
     /// The structure map dependency scope.

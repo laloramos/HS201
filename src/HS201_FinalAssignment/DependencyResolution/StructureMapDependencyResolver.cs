@@ -18,7 +18,7 @@
 using System.Web.Http.Dependencies;
 using StructureMap;
 
-namespace HS201_FinalAssignment.DependencyResolution
+namespace HS201.FinalAssignment.DependencyResolution
 {
     /// <summary>
     /// The structure map dependency resolver.

@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using HS201_FinalAssignment.Domain.Entities;
+using HS201.FinalAssignment.Core.Domain.Entities;
 using NHibernate;
 using NHibernate.Linq;
 
-namespace HS201_FinalAssignment.Infrastructure
+namespace HS201.FinalAssignment.Core.Infrastructure
 {
     public interface ISessionRepository
     {

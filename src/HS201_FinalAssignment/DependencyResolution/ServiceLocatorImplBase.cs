@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using Microsoft.Practices.ServiceLocation;
 
-namespace HS201_FinalAssignment.DependencyResolution
+namespace HS201.FinalAssignment.DependencyResolution
 {
     /// <summary>
     /// This class is a helper that provides a default implementation

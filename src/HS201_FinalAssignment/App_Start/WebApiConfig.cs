@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Http;
+﻿using System.Web.Http;
 
-namespace HS201_FinalAssignment
+namespace HS201.FinalAssignment.App_Start
 {
     public static class WebApiConfig
     {

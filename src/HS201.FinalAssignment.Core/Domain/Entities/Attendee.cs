@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace HS201_FinalAssignment.Domain.Entities
+﻿namespace HS201.FinalAssignment.Core.Domain.Entities
 {
     public class Attendee
     {

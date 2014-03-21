@@ -64,9 +64,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\HS201_FinalAssignment\HS201_FinalAssignment.csproj">
+    <ProjectReference Include="..\HS201.FinalAssignment.Core\HS201.FinalAssignment.Core.csproj">
+      <Project>{A36E7F7F-0B53-4101-A23A-20C6FB1A7A1E}</Project>
+      <Name>HS201.FinalAssignment.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HS201_FinalAssignment\HS201.FinalAssignment.csproj">
       <Project>{bdfa67d6-2d42-43fe-baed-f3aba4ad7087}</Project>
-      <Name>HS201_FinalAssignment</Name>
+      <Name>HS201.FinalAssignment</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

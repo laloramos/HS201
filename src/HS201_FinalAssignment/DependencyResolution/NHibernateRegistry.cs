@@ -2,7 +2,7 @@
 using NHibernate;
 using StructureMap.Configuration.DSL;
 
-namespace HS201_FinalAssignment.DependencyResolution
+namespace HS201.FinalAssignment.DependencyResolution
 {
     public class NHibernateRegistry : Registry
     {

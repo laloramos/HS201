@@ -1,4 +1,4 @@
-﻿namespace HS201_FinalAssignment.Domain.Entities
+﻿namespace HS201.FinalAssignment.Core.Domain.Entities
 {
     public class Speaker
     {

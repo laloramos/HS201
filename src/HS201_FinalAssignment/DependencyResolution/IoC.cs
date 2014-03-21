@@ -16,10 +16,10 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 
-using HS201_FinalAssignment.Infrastructure;
-using NHibernate;
+using HS201.FinalAssignment.Core.Domain.Entities;
 using StructureMap;
-namespace HS201_FinalAssignment.DependencyResolution {
+
+namespace HS201.FinalAssignment.DependencyResolution {
     public static class IoC {
         public static IContainer Initialize() {
             ObjectFactory.Configure(x =>
@@ -28,7 +28,8 @@ namespace HS201_FinalAssignment.DependencyResolution {
                                     {
                                         scan.TheCallingAssembly();
                                         scan.WithDefaultConventions();
-                                        scan.Assembly("HS201_FinalAssignment");
+                                        scan.TheCallingAssembly();
+                                        scan.AssemblyContainingType<Conference>();
                                         
                                         scan.LookForRegistries();
                                     });

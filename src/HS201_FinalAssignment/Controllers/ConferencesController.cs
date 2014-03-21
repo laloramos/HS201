@@ -2,17 +2,16 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
 using FluentValidation;
 using FluentValidation.Attributes;
-using HS201_FinalAssignment.Domain.Entities;
-using HS201_FinalAssignment.Infrastructure;
+using HS201.FinalAssignment.Core.Domain.Entities;
+using HS201.FinalAssignment.Core.Infrastructure;
 using Microsoft.Practices.ServiceLocation;
 using NHibernate;
 
-namespace HS201_FinalAssignment.Controllers
+namespace HS201.FinalAssignment.Controllers
 {
     public class ConferencesController : Controller
     {

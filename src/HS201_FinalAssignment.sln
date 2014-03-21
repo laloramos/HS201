@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HS201_FinalAssignment", "HS201_FinalAssignment\HS201_FinalAssignment.csproj", "{BDFA67D6-2D42-43FE-BAED-F3ABA4AD7087}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HS201.FinalAssignment", "HS201_FinalAssignment\HS201.FinalAssignment.csproj", "{BDFA67D6-2D42-43FE-BAED-F3ABA4AD7087}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HS201.FinalAssignment.Test", "HS201.FinalAssignment.Test\HS201.FinalAssignment.Test.csproj", "{32375CA3-6176-443A-9CCD-70B5BFB76C0B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HS201.FinalAssignment.Core", "HS201.FinalAssignment.Core\HS201.FinalAssignment.Core.csproj", "{A36E7F7F-0B53-4101-A23A-20C6FB1A7A1E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,6 +21,10 @@ Global
 		{32375CA3-6176-443A-9CCD-70B5BFB76C0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32375CA3-6176-443A-9CCD-70B5BFB76C0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{32375CA3-6176-443A-9CCD-70B5BFB76C0B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A36E7F7F-0B53-4101-A23A-20C6FB1A7A1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A36E7F7F-0B53-4101-A23A-20C6FB1A7A1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A36E7F7F-0B53-4101-A23A-20C6FB1A7A1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A36E7F7F-0B53-4101-A23A-20C6FB1A7A1E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

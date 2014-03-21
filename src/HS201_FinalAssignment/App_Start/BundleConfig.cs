@@ -1,7 +1,6 @@
-﻿using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
-namespace HS201_FinalAssignment
+namespace HS201.FinalAssignment.App_Start
 {
     public class BundleConfig
     {

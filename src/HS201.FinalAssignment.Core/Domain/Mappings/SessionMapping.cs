@@ -1,8 +1,8 @@
-using HS201_FinalAssignment.Domain.Entities;
+using HS201.FinalAssignment.Core.Domain.Entities;
 using NHibernate.Mapping.ByCode;
 using NHibernate.Mapping.ByCode.Conformist;
 
-namespace HS201_FinalAssignment.Domain.Mappings
+namespace HS201.FinalAssignment.Core.Domain.Mappings
 {
     public class SessionMapping : ClassMapping<Session>
     {

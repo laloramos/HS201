@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Security.Cryptography.X509Certificates;
+using HS201.FinalAssignment.Core.Domain.Entities;
 using HS201_FinalAssignment.Data_Access;
-using HS201_FinalAssignment.DependencyResolution;
-using HS201_FinalAssignment.Domain.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NHibernate;
 using NHibernate.Tool.hbm2ddl;
-using StructureMap;
 
 namespace HS201.FinalAssignment.Test
 {

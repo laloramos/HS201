@@ -1,18 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using FluentValidation;
 using FluentValidation.Mvc;
-using HS201_FinalAssignment.Helpers;
+using HS201.FinalAssignment.App_Start;
+using HS201.FinalAssignment.Helpers;
 using Microsoft.Practices.ServiceLocation;
 using NHibernate;
 
-namespace HS201_FinalAssignment
+namespace HS201.FinalAssignment
 {
     // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
     // visit http://go.microsoft.com/?LinkId=9394801

@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using HS201_FinalAssignment.Controllers;
-using HS201_FinalAssignment.Domain.Entities;
+using HS201.FinalAssignment.Controllers;
+using HS201.FinalAssignment.Core.Domain.Entities;
 
-namespace HS201_FinalAssignment.Helpers
+namespace HS201.FinalAssignment.Helpers
 {
 
     public static class AutoMapperBootstrapper

@@ -11,24 +11,27 @@
 @using(Html.BeginForm()){
 	@Html.ValidationSummary("Please fix the following errors:")
 	
-	<div>
-		@Html.LabelFor(x => x.Name)
-		@Html.EditorFor(x => x.Name)
-	</div>	<div>
-		@Html.LabelFor(x => x.HashTag)
-		@Html.EditorFor(x => x.HashTag)
-	</div>
-	<div>
-		@Html.LabelFor(x => x.StartDate)
-		@Html.EditorFor(x => x.StartDate)
-	</div>
-	<div>
-		@Html.LabelFor(x => x.EndDate)
-		@Html.EditorFor(x => x.EndDate)
-	</div>
-	<div>
-		@Html.LabelFor(x => x.Cost)
-		@Html.EditorFor(x => x.Cost)
-	</div>	
+    <table>
+        <tr>
+            <td>@Html.LabelFor(x => x.Name)</td>
+            <td>@Html.EditorFor(x => x.Name)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(x => x.HashTag)</td>
+            <td>@Html.EditorFor(x => x.HashTag)</td>
+        </tr>	
+	    <tr>
+            <td>@Html.LabelFor(x => x.StartDate)</td>
+            <td>@Html.EditorFor(x => x.StartDate)</td>
+	    </tr>	
+        <tr>
+            <td>@Html.LabelFor(x => x.EndDate)</td>
+            <td>@Html.EditorFor(x => x.EndDate)</td>
+        </tr>	
+        <tr>
+            <td>@Html.LabelFor(x => x.Cost)</td>
+            <td>@Html.EditorFor(x => x.Cost)</td>
+        </tr>
+    </table>
 	<input type="submit"/>
 }

@@ -105,7 +105,7 @@ namespace HS201.FinalAssignment.Controllers
                              || x.Name == searchString).ToList();
             var model = new ConferenceBulkEditModel()
             {
-                Conferences = Mapper.Map<List<ConferenceListItem>>(confs)
+                Conferences = Mapper.Map<List<ConferenceEditModel>>(confs)
             };
 
             return View(model);
@@ -121,7 +121,7 @@ namespace HS201.FinalAssignment.Controllers
                     var conference = _repository.Load(conf.Id);
 
                     conference.ChangeName(conf.Name);
-                    conference.ChangeCost(conf.Cost);
+                    conference.ChangeCost(conf.Cost.Value);
                     conference.ChangeDates(conf.StartDate.Value, conf.EndDate.Value);
                     conference.ChangeHashTag(conf.HashTag);
                     _repository.Save(conference);
@@ -141,7 +141,7 @@ namespace HS201.FinalAssignment.Controllers
 
     public class ConferenceBulkEditModel
     {
-        public List<ConferenceListItem> Conferences { get; set; } 
+        public List<ConferenceEditModel> Conferences { get; set; } 
     }
 
     public class ConferenceListItem

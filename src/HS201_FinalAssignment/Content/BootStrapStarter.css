@@ -6,7 +6,7 @@
   text-align: center;
 }
 
-td th {
+td, th {
     padding: 3px 5px 3px 5px;
     margin: 2px 3px 2px 3px;
 }

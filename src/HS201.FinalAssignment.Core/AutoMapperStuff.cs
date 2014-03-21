@@ -1,9 +1,8 @@
 ﻿using AutoMapper;
-using HS201.FinalAssignment.Controllers;
 using HS201.FinalAssignment.Core.Domain.Entities;
 using HS201.FinalAssignment.Core.Features.Conferences;
 
-namespace HS201.FinalAssignment.Helpers
+namespace HS201.FinalAssignment.Core
 {
 
     public static class AutoMapperBootstrapper
@@ -19,9 +18,6 @@ namespace HS201.FinalAssignment.Helpers
         protected override void Configure()
         {
             Mapper.CreateMap<Conference, ConferenceListItem>();
-            Mapper.CreateMap<Conference, ConferenceEditModel>();
-            Mapper.CreateMap<Conference, ConferenceAddModel>();
-            Mapper.CreateMap<ConferenceAddModel, Conference>();
         }
     }
 }

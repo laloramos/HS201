@@ -17,25 +17,24 @@
 
 
 using HS201.FinalAssignment.Core.Domain.Entities;
+using ShortBus;
 using StructureMap;
 
 namespace HS201.FinalAssignment.DependencyResolution {
     public static class IoC {
         public static IContainer Initialize() {
-            ObjectFactory.Configure(x =>
-                        {
-                            x.Scan(scan =>
-                                    {
-                                        scan.TheCallingAssembly();
-                                        scan.WithDefaultConventions();
-                                        scan.TheCallingAssembly();
-                                        scan.AssemblyContainingType<Conference>();
-                                        
-                                        scan.LookForRegistries();
-                                    });
-            //                x.For<IExample>().Use<Example>();
-
-                        });
+            ObjectFactory.Configure(x => x.Scan(scan =>
+                {
+                    scan.TheCallingAssembly();
+                    scan.WithDefaultConventions();
+                    scan.TheCallingAssembly();
+                    scan.AssemblyContainingType<Conference>();
+                    scan.AddAllTypesOf(typeof (IQuery<>));
+                    scan.AddAllTypesOf(typeof (IQueryHandler<,>));
+                    scan.AddAllTypesOf(typeof (ICommandHandler<>));
+                    scan.AssemblyContainingType<IMediator>();
+                    scan.LookForRegistries();
+                }));
             return ObjectFactory.Container;
         }
     }

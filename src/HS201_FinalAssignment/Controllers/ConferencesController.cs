@@ -7,41 +7,31 @@ using AutoMapper;
 using FluentValidation;
 using FluentValidation.Attributes;
 using HS201.FinalAssignment.Core.Domain.Entities;
+using HS201.FinalAssignment.Core.Features.Conferences;
 using HS201.FinalAssignment.Core.Infrastructure;
 using Microsoft.Practices.ServiceLocation;
 using NHibernate;
+using ShortBus;
 
 namespace HS201.FinalAssignment.Controllers
 {
     public class ConferencesController : Controller
     {
         private readonly IConferenceRepository _repository;
+        private readonly IMediator _mediator;
         //
         // GET: /Conferences/
 
-        public ConferencesController(IConferenceRepository repository)
+        public ConferencesController(IConferenceRepository repository, IMediator mediator)
         {
             _repository = repository;
+            _mediator = mediator;
         }
 
         public ActionResult Index(string searchString)
         {
-            var confs = _repository
-                            .GetAll()
-                            .ToList();
-
-            if (!String.IsNullOrEmpty(searchString))
-                confs =
-                    confs.Where(
-                        x => x.Attendees.Count.ToString() == searchString
-                             || x.StartDate.GetValueOrDefault().ToShortDateString() == searchString
-                             || x.Name == searchString).ToList();
-            var model = new ConferenceIndexModel()
-            {
-                Conferences = Mapper.Map<List<ConferenceListItem>>(confs)
-            };
-
-            return View(model);
+            var model = _mediator.Request(new ConferencesIndexQuery {SearchString = searchString});
+            return View(model.Data);
         }
 
         public ActionResult Edit(int id)
@@ -58,18 +48,9 @@ namespace HS201.FinalAssignment.Controllers
         {
             if (ModelState.IsValid)
             {
-                var conference = _repository.Load(model.Id);
-
-                conference.ChangeName(model.Name);
-                conference.ChangeCost(model.Cost.Value);
-                conference.ChangeDates(model.StartDate.Value, model.EndDate.Value);
-                conference.ChangeHashTag(model.HashTag);
-
-                _repository.Save(conference);
-
+                _mediator.Send(model);
                 return RedirectToAction("Index");
             }
-
             return View(model);
         }
 
@@ -134,47 +115,16 @@ namespace HS201.FinalAssignment.Controllers
         }
     }
 
-    public class ConferenceIndexModel
-    {
-        public List<ConferenceListItem> Conferences { get; set; }
-    }
+
 
     public class ConferenceBulkEditModel
     {
         public List<ConferenceEditModel> Conferences { get; set; } 
     }
 
-    public class ConferenceListItem
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string HashTag { get; set; }
-        public DateTime? StartDate { get; set; }
-        public DateTime? EndDate { get; set; }
-        public decimal Cost { get; set; }
-        public int AttendeeCount { get; set; }
-        public int SessionCount { get; set; }
-    }
 
-    [Validator(typeof(ConferenceEditModelValidator))]
-    public class ConferenceEditModel
-    {
-        public int Id { get; set; }
 
-        [DisplayName("Name")]
-        public string Name { get; set; }
 
-        [DisplayName("Hash Tag")]
-        public string HashTag { get; set; }
-
-        [DisplayName("Start Date")]
-        public DateTime? StartDate { get; set; }
-
-        [DisplayName("End Date")]
-        public DateTime? EndDate { get; set; }
-
-        public decimal? Cost { get; set; }
-    }
 
     [Validator(typeof (ConferenceAddModelValidator))]
     public class ConferenceAddModel
@@ -194,39 +144,8 @@ namespace HS201.FinalAssignment.Controllers
         public decimal? Cost { get; set; }
     }
 
-    public class ConferenceEditModelValidator : AbstractValidator<ConferenceEditModel>
-    {
-        public ConferenceEditModelValidator()
-        {
-            RuleFor(x => x.Name)
-                .NotEmpty()
-                .Must(BeAUniqueName)
-                .WithMessage("{PropertyName} is already in use.");
+    
 
-            RuleFor(x => x.HashTag)
-                .NotEmpty();
-
-            RuleFor(x => x.StartDate)
-                .NotEmpty();
-
-            RuleFor(x => x.EndDate)
-                .NotEmpty()
-                .GreaterThanOrEqualTo(x => x.StartDate)
-                .WithMessage("{PropertyName} must be after or equal to {ComparisonValue}.", x => x.StartDate);
-
-            RuleFor(x => x.Cost)
-                .NotEmpty();
-
-            RuleFor(x => x.Cost)
-                .GreaterThanOrEqualTo(0).WithMessage("{PropertyName} must be at least $0.00");
-        }
-
-        public bool BeAUniqueName(ConferenceEditModel model, string name)
-        {
-            var conf = ServiceLocator.Current.GetInstance<ISession>().QueryOver<Conference>().Where(x => x.Name == name).SingleOrDefault();
-            return conf == null || conf.Id == model.Id;
-        }
-    }
 
 
     public class ConferenceAddModelValidator : AbstractValidator<ConferenceAddModel>
@@ -258,7 +177,9 @@ namespace HS201.FinalAssignment.Controllers
 
         public bool BeAUniqueName(ConferenceAddModel model, string name)
         {
-            return ServiceLocator.Current.GetInstance<ISession>().QueryOver<Conference>().Where(x => x.Name == name) == null;
+            var conf =
+                ServiceLocator.Current.GetInstance<ISession>().QueryOver<Conference>().Where(x => x.Name == name).List();
+            return conf.Count == 0;
         }
     }
 }
